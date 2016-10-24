@@ -58,10 +58,23 @@ module.exports = function(app, passport, apiAuth){
 	});
 
 	app.delete('/tweet/:id', function(req, res){
+		console.log(req.body);
+		tweetId = req.params.id
+		userId = req.body.id
+		User.findOne({ 'twitter.id' : userId }, function(err, user) {
+			if(err){
+				return res.json({"kanker":"kanker"})
+			}
+			savedTweets = user.twitter.savedTweets;
 
-		Tweet.remove({ tweet_id: req.params.id }, function(err) {
-			if(!err)
-				return res.json({ok:"ok"});
+			tweetIndex = savedTweets.indexOf(tweetId)
+    		savedTweets.splice(tweetIndex, 1)
+
+			User.update( {'twitter.id':userId}, {$set : {'twitter.savedTweets':savedTweets}}, function(error, truc){
+				if(!error){
+					return res.json({"ok":"ok"})
+				}
+			});
 		});
 		
 	});

@@ -30,7 +30,7 @@ module.exports = function(app, passport){
 
             } else {
             	//204 No Content
-            	res.status(204);
+            	res.status(404);
             	return res.json({'error':'User not found'})
             }
         });
@@ -96,6 +96,24 @@ module.exports = function(app, passport){
 			savedTweets = user.twitter.savedTweets;
 			console.log(savedTweets);
 			return res.json({savedTweets})
+		});
+	});
+
+	app.get('/user/:userId/tweets/:tweetId', function(req, res){
+
+		userId = req.params.userId
+		tweetId = req.params.tweetId
+		User.findOne({ 'twitter.id' : userId }, function(err, user) {
+			savedTweets = user.twitter.savedTweets;
+
+			tweets = savedTweets.indexOf(tweetId)
+    		array.splice(index, 1)
+
+			User.update( {'twitter.id':userId}, {$set : {'twitter.savedTweets':tweets}}, function(error, truc){
+				if(!error){
+					return res.json({"ok":"ok"})
+				}
+			});
 		});
 	});
 
