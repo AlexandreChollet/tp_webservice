@@ -12,9 +12,6 @@ var Twitter = require('twitter');
 // Modules
 
 module.exports = function(app, passport){
-	app.get('/', function(req, res){
-		res.render('index.pug');
-	});
 
 	app.get('/user/:id', function(req, res){
         User.findOne({ 'twitter.id' : req.params.id }, function(err, user) {
