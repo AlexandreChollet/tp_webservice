@@ -13,19 +13,6 @@ var Twitter = require('twitter');
 
 module.exports = function(app, passport, apiAuth){
 
-	app.post('/tweet', function(req, res){
-
-		console.log("saving tweet...")
-
-		user = User.findOne({"id" : id})
-
-		newTweet.save(function(err) {
-	        if (err)
-	            throw err;
-	        return res.json({ok:"ok"});
-	    });
-	});
-
 	app.get('/tweet/user/:id', function(req, res){
 		userId = req.params.id;
 		token = req.query.token;
@@ -58,7 +45,6 @@ module.exports = function(app, passport, apiAuth){
 	});
 
 	app.delete('/tweet/:id', function(req, res){
-		console.log(req.body);
 		tweetId = req.params.id
 		userId = req.body.id
 		User.findOne({ 'twitter.id' : userId }, function(err, user) {

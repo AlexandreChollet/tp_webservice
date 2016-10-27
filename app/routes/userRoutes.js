@@ -17,8 +17,6 @@ module.exports = function(app, passport){
 	});
 
 	app.get('/user/:id', function(req, res){
-		console.log(req.params.id);
-
         User.findOne({ 'twitter.id' : req.params.id }, function(err, user) {
 
             if (err)
