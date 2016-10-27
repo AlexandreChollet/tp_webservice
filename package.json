@@ -22,6 +22,7 @@
     "body-parser": "latest",
     "connect-flash": "~0.1.1",
     "cookie-parser": "latest",
+    "cors": "^2.8.1",
     "ejs": "latest",
     "express": "~4.12.3",
     "express-session": "latest",

@@ -25,7 +25,7 @@ module.exports = function(app, passport, apiAuth){
 			access_token_secret: tokenSecret
 		});
 
-		var params = {screen_name: 'nodejs'};
+		var params = {screen_name: 'nodejs' , include_rts : 'true' };
 		client.get('statuses/home_timeline', params, function(error, tweets, response) {
 		  if (!error) {
 		  	tweetsIndex = [];

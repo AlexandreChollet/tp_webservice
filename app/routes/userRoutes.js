@@ -63,7 +63,6 @@ module.exports = function(app, passport){
 		User.findOne({ 'twitter.id' : userId }, function(err, user) {
 			savedTweets = user.twitter.savedTweets;
 
-			console.log(savedTweets);
 			exists = false;
 
 			savedTweets.forEach(function(tweet, index){

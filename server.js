@@ -1,6 +1,7 @@
 var express 	 	= require('express');
 var app			 	= express();
 var port 		 	= process.env.PORT || 8080;
+var cors 			= require('cors')
 var oauth 		 	= require('oauth');
 var router 		 	= express.Router();
 var morgan 		 	= require('morgan');
@@ -29,6 +30,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use(express.static(__dirname + '/views'));
+app.use(cors());
 
 app.set('view engine', 'pug');
 
